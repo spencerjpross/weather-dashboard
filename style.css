@@ -1,0 +1,27 @@
+.today-board {
+    border: 3px solid black;
+
+}
+
+.five-day {
+    display: flex;   
+}
+
+.five-day > div {
+    border: 3px solid black;
+    padding: 10px;
+    margin: 15px;
+}
+
+#search-history button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav{
+    display: flex;
+    justify-content: center;
+    color: white;
+    background-image: linear-gradient(to right, blue, purple);
+}

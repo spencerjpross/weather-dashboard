@@ -2,7 +2,10 @@ const APIKey = '8d9373d71de8200217b15165749a980f';
 const cityEl = document.getElementById("cityEl");
 const fiveDayBox = document.querySelector('.five-day');
 const todayBoard = document.querySelector('.today-board');
-const allSearches = []
+const searchBox = document.getElementById('search-history');
+let allSearches = []
+
+
 
 function getData(lat, lon, cityName) {
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`) 
@@ -23,16 +26,37 @@ function getGeo(city) {
         })
         .then(function(data) {
             console.log(data);
-            getData(data[0].lat, data[0].lon, data[0].name) 
+            getData(data[0].lat, data[0].lon, data[0].name);
+            cityList(data[0].name)
         });
 }
 
+function cityList(city){
+    console.log(city);
+    allSearches.push(city);
+    localStorage.setItem('searches', JSON.stringify(allSearches));
+    pastSearch()
+};
 
-cityEl.addEventListener("submit", function(e) {
-    e.preventDefault();
-    const cityInput = document.getElementById('city-input').value;
-    getGeo(cityInput)
-})
+function pastSearch(){
+    //this clears the html container we're appending to so there's no duplicates
+    searchBox.innerHTML = ""
+    for (var i = 0; i < allSearches.length; i++){
+        let buttonEl = document.createElement('button');
+        buttonEl.textContent = allSearches[i];
+        searchBox.appendChild(buttonEl);
+    }
+}
+
+function getCityList(){
+    let getSearches = localStorage.getItem('searches');
+    console.log(getSearches)
+        if (getSearches){
+            allSearches = JSON.parse(getSearches);
+            console.log(allSearches);
+        }
+    pastSearch()
+};
 
 function todayWeather(data, cityName) {
     let dateEl = document.createElement('h3')
@@ -74,8 +98,11 @@ function dateConverter(time){
     return date
 }
 
-localStorage.setItem('searches', JSON.stringify(allSearches))
+getCityList();
 
-document.addEventListener('submit', function(){
-    document.getElementById
+cityEl.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const cityInput = document.getElementById('city-input').value;
+    getGeo(cityInput)
 })
+
