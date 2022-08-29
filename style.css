@@ -1,16 +1,23 @@
 .grid-container {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .today-board {
+    display: flex;
     border: 3px solid black;
     color: white;
     background-image: linear-gradient(to right, grey, blue);
-    width: auto;
-    grid-row-start:1;
+    /* grid-row-start:1;
     grid-row-end:2;
     grid-column-start: 2;
-    grid-column-end:4;
+    grid-column-end:4; */
+}
+
+.upper-box {
+    display: flex;
 }
 
 .search-history {
@@ -19,7 +26,7 @@
 
 .five-day {
     display: flex;  
-    justify-content: flex-end; 
+    justify-content: flex-end;
 }
 
 .five-day > div {
@@ -28,10 +35,10 @@
     background-image: linear-gradient(to right, grey, blue);
     padding: 10px;
     margin: 15px;
-    grid-row-start: 2;
+    /* grid-row-start: 2;
     grid-row-end: 3;
     grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column-end: 4; */
 }
 
 #search-history button{

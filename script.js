@@ -3,7 +3,8 @@ const cityEl = document.getElementById("cityEl");
 const fiveDayBox = document.querySelector('.five-day');
 const todayBoard = document.querySelector('.today-board');
 const searchBox = document.getElementById('search-history');
-let allSearches = []
+const containerEl = document.querySelector('.grid-container');
+let allSearches = [];
 
 
 
@@ -41,10 +42,15 @@ function cityList(city){
 
 function pastSearch(){
     //this clears the html container we're appending to so there's no duplicates
-    searchBox.innerHTML = ""
+    searchBox.innerHTML ="";
+    fiveDayBox.innerHTML = "";
+    todayBoard.innerHTML = "";
+    allSearches = [...new Set(allSearches)]
     for (var i = 0; i < allSearches.length; i++){
         let buttonEl = document.createElement('button');
         buttonEl.textContent = allSearches[i];
+        buttonEl.setAttribute('data-city', allSearches[i]);
+
         searchBox.appendChild(buttonEl);
     }
 }
@@ -106,6 +112,12 @@ cityEl.addEventListener("submit", function(e) {
     const cityInput = document.getElementById('city-input').value;
     getGeo(cityInput)
 });
+
+searchBox.addEventListener('click', function(e) {
+    const dataCity = e.target.getAttribute('data-city');
+    getGeo(dataCity);
+})
+
 
 // buttonEl.addEventListener('click', () => {
 //     console.log('btn clicked')
