@@ -7,6 +7,7 @@ let allSearches = []
 
 
 
+
 function getData(lat, lon, cityName) {
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`) 
         .then(function(response) {
@@ -104,5 +105,10 @@ cityEl.addEventListener("submit", function(e) {
     e.preventDefault();
     const cityInput = document.getElementById('city-input').value;
     getGeo(cityInput)
-})
+});
 
+// buttonEl.addEventListener('click', () => {
+//     console.log('btn clicked')
+//     getGeo(city);
+//     getData(lat, lon, cityName)
+// });
