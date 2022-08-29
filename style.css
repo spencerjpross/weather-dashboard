@@ -4,6 +4,8 @@
 
 .today-board {
     border: 3px solid black;
+    color: white;
+    background-image: linear-gradient(to right, grey, blue);
     width: auto;
     grid-row-start:1;
     grid-row-end:2;
@@ -22,6 +24,8 @@
 
 .five-day > div {
     border: 3px solid black;
+    color: white;
+    background-image: linear-gradient(to right, grey, blue);
     padding: 10px;
     margin: 15px;
     grid-row-start: 2;
